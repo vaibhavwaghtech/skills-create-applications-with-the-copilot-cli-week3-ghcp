@@ -1,0 +1,23 @@
+{
+  "name": "skills-create-applications-with-the-copilot-cli-week3-ghcp",
+  "version": "1.0.0",
+  "description": "<img src=\"https://octodex.github.com/images/Professortocat_v2.png\" align=\"right\" height=\"200px\" />",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vaibhavwaghtech/skills-create-applications-with-the-copilot-cli-week3-ghcp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vaibhavwaghtech/skills-create-applications-with-the-copilot-cli-week3-ghcp/issues"
+  },
+  "homepage": "https://github.com/vaibhavwaghtech/skills-create-applications-with-the-copilot-cli-week3-ghcp#readme",
+  "devDependencies": {
+    "jest": "^30.3.0"
+  }
+}
