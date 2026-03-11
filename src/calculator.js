@@ -8,6 +8,9 @@
  * - Subtraction (-): Subtract numbers from an initial value
  * - Multiplication (*): Multiply two or more numbers
  * - Division (/): Divide numbers with error handling for division by zero
+ * - Modulo (%): Return the remainder of division
+ * - Power (^): Raise a base to an exponent
+ * - Square Root (√): Calculate the square root with error handling for negative numbers
  */
 
 const readline = require('readline');
@@ -61,6 +64,27 @@ function divide(initial, ...numbers) {
   return numbers.reduce((result, num) => result / num, initial);
 }
 
+// Modulo: Return the remainder of a divided by b
+function modulo(a, b) {
+  if (b === 0) {
+    throw new Error('Modulo by zero is not allowed');
+  }
+  return a % b;
+}
+
+// Power: Raise base to an exponent
+function power(base, exponent) {
+  return Math.pow(base, exponent);
+}
+
+// Square Root: Calculate the square root with error handling for negative numbers
+function squareRoot(n) {
+  if (n < 0) {
+    throw new Error('Square root of negative numbers is not allowed');
+  }
+  return Math.sqrt(n);
+}
+
 function handleCalculation(operation, operands) {
   try {
     const nums = operands.map(num => parseFloat(num));
@@ -87,8 +111,30 @@ function handleCalculation(operation, operands) {
       case 'divide':
         result = divide(...nums);
         break;
+      case '%':
+      case 'modulo':
+        if (nums.length !== 2) {
+          return 'Error: Modulo requires exactly 2 operands';
+        }
+        result = modulo(nums[0], nums[1]);
+        break;
+      case '^':
+      case 'power':
+        if (nums.length !== 2) {
+          return 'Error: Power requires exactly 2 operands';
+        }
+        result = power(nums[0], nums[1]);
+        break;
+      case '√':
+      case 'sqrt':
+      case 'squareroot':
+        if (nums.length !== 1) {
+          return 'Error: Square root requires exactly 1 operand';
+        }
+        result = squareRoot(nums[0]);
+        break;
       default:
-        return 'Error: Invalid operation. Use +, -, *, or /';
+        return 'Error: Invalid operation. Use +, -, *, /, %, ^, or √';
     }
 
     return result;
@@ -99,12 +145,16 @@ function handleCalculation(operation, operands) {
 
 function showMenu() {
   console.log('\n=== Node.js CLI Calculator ===');
-  console.log('Operations: + (add), - (subtract), * (multiply), / (divide)');
+  console.log('Operations: + (add), - (subtract), * (multiply), / (divide),');
+  console.log('            % (modulo), ^ (power), √ (squareroot)');
   console.log('Examples:');
   console.log('  + 5 3 2      -> 10 (addition)');
   console.log('  - 10 3 2     -> 5 (subtraction)');
   console.log('  * 4 5 2      -> 40 (multiplication)');
   console.log('  / 100 2 5    -> 10 (division)');
+  console.log('  % 17 5       -> 2 (modulo)');
+  console.log('  ^ 2 8        -> 256 (power/exponentiation)');
+  console.log('  √ 16         -> 4 (square root)');
   console.log('Type "exit" to quit\n');
 }
 
@@ -148,4 +198,4 @@ if (require.main === module) {
 }
 
 // Export for testing and CLI usage
-module.exports = { calculate, add, subtract, multiply, divide, handleCalculation };
+module.exports = { calculate, add, subtract, multiply, divide, modulo, power, squareRoot, handleCalculation };
